@@ -187,8 +187,8 @@ while(wordle_turn):
         correct_input=True       
 
         while(correct_input):
-            turn=input("Would you like another go? (Y/N)")
-            turn=turn.upper()
+            turn=input("Would you like another go? (Y/N)").upper()
+        
             if turn == 'Y':
                 correct_input = False
             elif turn == 'N':
