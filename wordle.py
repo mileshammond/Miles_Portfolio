@@ -1,3 +1,5 @@
+#By Miles Hammond 
+
 #Terminal version of the popular word guessing game. Six Chances to guess the five letter word.
 #Database has over 12000 words. Play the game as many times as you like until the dictionary is exhausted.
 
