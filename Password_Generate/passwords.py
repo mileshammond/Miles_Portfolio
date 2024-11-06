@@ -20,17 +20,21 @@ def character_choice(duplicate,char_choice):
     else:
         # Allows duplicates if user selected this option
         if duplicate:
-            gen_pw.append(chr(choice(char_choice)))
+            #Adds character to password list by converting ASCII number to character equivalent
+            gen_pw.append(chr(choice(char_choice))) 
             counter-=1
         else:
             loop=True
-        #If user didnt allow duplicates then print single character
+            #If user didnt allow duplicates then print single character
             while(loop):  
                 chosen=chr(choice(char_choice))
                 
                 if chosen not in gen_pw:
                     gen_pw.append(chosen) #Adds character to password list
-                    char_choice.remove(ord(chosen)) #Removes character from list range to prevent issues generating larger password sizes
+
+                    #Removes character from list range to prevent issues generating larger password sizes
+                    #Converts character back to ASCII number in order to remove from its list
+                    char_choice.remove(ord(chosen)) 
                     counter-=1
                     loop=False                
 
@@ -64,7 +68,7 @@ def generator(size=12,duplicate=True,numbers=True,upper=True,lower=True,special=
     counter=size
     char_total=0
 
-    #Defining character lists
+    #Defining character lists (ASCII numbers represent screen character)
     numerical=list(range(48,58)) # 0 to 9
     letters_upper=list(range(65,91)) # A to Z
     letters_lower=list(range(97,123)) # a to z
@@ -101,6 +105,6 @@ def generator(size=12,duplicate=True,numbers=True,upper=True,lower=True,special=
                     character_choice(duplicate,special_char) #Generates special characters
                                 
         shuffle(gen_pw) #Shuffles generated password to provide finlaise random generation
-        return ''.join(gen_pw) #Convert the generated password from a list to a string and return to main GUI program
+        return ''.join(gen_pw) #Convert the generated password list to a string and return to main GUI program
 
    
