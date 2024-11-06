@@ -2,7 +2,7 @@
 
 #By Miles Hammond
 
-from passwords import generator # Imports 'Generator' function from 'passwords' module to generate password
+from Password_Generate.passwords import generator # Imports 'Generator' function from 'passwords' module to generate password
 from tkinter import *
 from tkinter import ttk
 import pyperclip 

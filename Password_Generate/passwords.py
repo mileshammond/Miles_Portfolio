@@ -6,7 +6,7 @@
 from random import *
 from os import system
 
-gen_pw=[] # Generated Password 
+gen_pw=[] #Generated Password 
 counter=0
 
 def character_choice(duplicate,char_choice):
@@ -14,6 +14,7 @@ def character_choice(duplicate,char_choice):
     #Takes list parameter containing character range used for generating a character
     global gen_pw,counter
     
+    #Don't use function if character list parameter is empty and no characters left to generate
     if len(char_choice) == 0 or counter == 0:
         return
     else:
