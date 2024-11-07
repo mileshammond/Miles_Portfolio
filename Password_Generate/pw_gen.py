@@ -2,7 +2,7 @@
 
 #By Miles Hammond
 
-from Password_Generate.passwords import generator # Imports 'Generator' function from 'passwords' module to generate password
+from passwords import generator # Imports 'Generator' function from 'passwords' module to generate password
 from tkinter import *
 from tkinter import ttk
 import pyperclip 
@@ -20,7 +20,7 @@ sizes=[]
 for size in range(6,41):
      sizes.append(size)
 
-top.geometry("720x320")
+top.geometry("740x320")
 top.title("Security")
 top.config(bg="lightyellow")
 
