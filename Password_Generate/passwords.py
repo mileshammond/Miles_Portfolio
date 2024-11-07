@@ -9,34 +9,44 @@ from os import system
 gen_pw=[] #Generated Password 
 counter=0
 
-def character_choice(char_choice):
+def character_choice(char_choice,use_duplicate=False):
     #Function generates a character for the password
-    #Takes list parameter containing ASCII character range used for generating a character
+    #The 'Char_choice' takes list parameter containing ASCII character range used for generating a single character
     #Randomly chooses character from the list parameter
+    
+    #The 'use_duplicate' is set to False by default. If True is provided as an argument then a character will be
+    #duplicated from the password list and appended to it.
 
     global gen_pw,counter
     
-    #Don't use function if character list parameter is empty and no characters left to generate
+    #Don't use function if character list parameter is empty or there are no characters left to generate...
     if len(char_choice) == 0 or counter == 0:
         return
     else:
-        loop=True
-        #Otherwise get a single character
-        while(loop): 
-            #Converts randomly choosen ASCII number from range
-            #to the character equivalent
-            chosen=chr(choice(char_choice))
+    #...Otherwise generate a character
+         if use_duplicate:
+            #If duplicate is required then a character will be copied from the password list and appended to it...
+            char_choice.append(choice(char_choice))
+            counter-=1   
+         else:
+            #...Otherwise generate a unique character
+            loop=True
             
-            #Add randomly chosen character to the password if it isnt already included
-            #Otherwise loop around and try again!
-            if chosen not in gen_pw:
-                gen_pw.append(chosen) #Adds character to password
+            while(loop): 
+                #Converts randomly choosen ASCII number from range
+                #to the character equivalent
+                chosen=chr(choice(char_choice))
+                
+                #Add randomly chosen character to the password if it isnt already included
+                #Otherwise loop around and try again!
+                if chosen not in gen_pw:
+                    gen_pw.append(chosen) #Adds character to password
 
-                #Removes character from list to prevent issues with generating larger password sizes
-                #Converts character back to ASCII number so it can be removed from the character list
-                char_choice.remove(ord(chosen)) 
-                counter-=1
-                loop=False                
+                    #Removes character from list to prevent issues with generating larger password sizes
+                    #Converts character back to ASCII number so it can be removed from the character list
+                    char_choice.remove(ord(chosen)) 
+                    counter-=1
+                    loop=False                
 
 def generator(size=12,duplicate=True,numbers=True,upper=True,lower=True,special=True):  
     '''       Password generator. 
@@ -104,9 +114,7 @@ def generator(size=12,duplicate=True,numbers=True,upper=True,lower=True,special=
                 if special:
                     character_choice(special_char) #Generates a special character
                 if duplicate:
-                    if counter !=0:
-                        gen_pw.append(choice(gen_pw)) #Generates a duplicated character from the current passowrd
-                        counter-=1
+                    character_choice(gen_pw,True) #Generates a duplicate character
                                 
         shuffle(gen_pw) #Shuffles generated password to provide final effect of random generation
         return ''.join(gen_pw) #Convert the generated password list to a string and return to main GUI program
