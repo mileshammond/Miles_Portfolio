@@ -37,8 +37,7 @@ def character_choice(char_choice,use_duplicate=False):
                 #to the character equivalent
                 chosen=chr(choice(char_choice))
                 
-                #Add randomly chosen character to the password if it isnt already included
-                #Otherwise loop around and try again!
+                #Add randomly chosen character to the password if it isnt already included. Otherwise loop around and try again!
                 if chosen not in gen_pw:
                     gen_pw.append(chosen) #Adds character to password
 
