@@ -1,7 +1,7 @@
 #By Miles Hammond 
 
-#Terminal version of the popular word guessing game. Six Chances to guess the five letter word.
-#Database has over 12000 words. Play the game as many times as you like until the dictionary is exhausted.
+#Terminal version of the popular word guessing game. Six Chances to guess the five letter word
+#Database has over 12000 words. Play the game as many times as you like until the dictionary is exhausted
 
 from os import system
 from time import sleep
@@ -13,7 +13,7 @@ class wordle_tools():
         pass
 
     def print_wordle(self):
-        #Print wordle board. Previous guesses in a 2 dimensional matrix. Maps the letters to the correct colour. 
+        #Print wordle board. Previous guesses in a 2 dimensional matrix. Maps the letters to the correct colour
         #Uppercase letters were guessed correctly and translate to green
         #Lowercase letters are in the word but in the incorrect place and translate to yellow
         #Letters prefixed with . were guessed incorrectly and translate to white
@@ -37,9 +37,9 @@ class wordle_tools():
             print()    
 
     def letter_matching(self):
-        #Find all letters that are guessed correctly, incorrectly and in wrong position. 
+        #Find all letters that are guessed correctly, incorrectly and in wrong position
         #Marks the letters in a specific fashion within the wordle board matrix so they can be mapped 
-        #to speficic colour when printed to screen later on with the print_wordle() function.
+        #to speficic colour when printed to screen later on with the print_wordle() function
         
         #Uppercase letters - Guessed correctly
         #Lowercase letters - Exist in the word but in the wrong place
