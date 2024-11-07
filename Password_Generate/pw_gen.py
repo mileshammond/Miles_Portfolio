@@ -25,7 +25,7 @@ top.title("Security")
 top.config(bg="lightyellow")
 
 def begin():
-     #Function calls module to generate a password based on the GUI chosen options.
+     #Function calls module to generate a password based on the GUI chosen options
      t1.delete("1.0", END)
      t1.insert(END,generator(size=password_size.get(),lower=lower_checkbox.get(),upper=upper_checkbox.get(),numbers=number_checkbox.get(),duplicate=duplicate_checkbox.get(),special=special_checkbox.get()))
      t1.tag_configure("tag_name", justify='center')
