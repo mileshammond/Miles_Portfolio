@@ -9,7 +9,7 @@ from os import system
 gen_pw=[] #Generated Password 
 counter=0
 
-def character_choice(duplicate,char_choice):
+def character_choice(char_choice):
     #Function generates a character for the password
     #Takes list parameter containing ASCII character range used for generating a character
     #Randomly chooses character from the list parameter
@@ -20,35 +20,28 @@ def character_choice(duplicate,char_choice):
     if len(char_choice) == 0 or counter == 0:
         return
     else:
-        # Allows duplicates if user selected this option
-        if duplicate:
-            #Adds character to password list by converting randomly choosen ASCII number from range
+        loop=True
+        #Otherwise get a single character
+        while(loop): 
+            #Converts randomly choosen ASCII number from range
             #to the character equivalent
-            gen_pw.append(chr(choice(char_choice))) 
-            counter-=1
-        else:
-            loop=True
-            #If user didnt allow duplicates then print single character
-            while(loop): 
-                #Converts randomly choosen ASCII number from range
-                #to the character equivalent
-                chosen=chr(choice(char_choice))
-                
-                #Add randomly chosen character to the password if it isnt already included
-                #Otherwise loop around and try again!
-                if chosen not in gen_pw:
-                    gen_pw.append(chosen) #Adds character to password
+            chosen=chr(choice(char_choice))
+            
+            #Add randomly chosen character to the password if it isnt already included
+            #Otherwise loop around and try again!
+            if chosen not in gen_pw:
+                gen_pw.append(chosen) #Adds character to password
 
-                    #Removes character from list to prevent issues with generating larger password sizes
-                    #Converts character back to ASCII number so it can be removed from the character list
-                    char_choice.remove(ord(chosen)) 
-                    counter-=1
-                    loop=False                
+                #Removes character from list to prevent issues with generating larger password sizes
+                #Converts character back to ASCII number so it can be removed from the character list
+                char_choice.remove(ord(chosen)) 
+                counter-=1
+                loop=False                
 
 def generator(size=12,duplicate=True,numbers=True,upper=True,lower=True,special=True):  
     '''       Password generator. 
 
-       Default parameters produce a 12 character password potentially mixed with the following:
+       Default parameters produce a 12 character password mixed with the following:
 
        Duplicate characters
        Numbers (0-9)
@@ -103,13 +96,17 @@ def generator(size=12,duplicate=True,numbers=True,upper=True,lower=True,special=
 
             while(counter>0):  
                 if numbers:       
-                    character_choice(duplicate,numerical) #Generates a number character
+                    character_choice(numerical) #Generates a number character
                 if upper:
-                    character_choice(duplicate,letters_upper) #Generates a uppercase character
+                    character_choice(letters_upper) #Generates a uppercase character
                 if lower:
-                    character_choice(duplicate,letters_lower) #Generates a lowercase character
+                    character_choice(letters_lower) #Generates a lowercase character
                 if special:
-                    character_choice(duplicate,special_char) #Generates a special character
+                    character_choice(special_char) #Generates a special character
+                if duplicate:
+                    if counter !=0:
+                        gen_pw.append(choice(gen_pw)) #Generates a duplicated character from the current passowrd
+                        counter-=1
                                 
         shuffle(gen_pw) #Shuffles generated password to provide final effect of random generation
         return ''.join(gen_pw) #Convert the generated password list to a string and return to main GUI program
