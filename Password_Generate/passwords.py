@@ -11,6 +11,7 @@ counter=0
 
 def character_choice(char_choice,use_duplicate=False):
     #Function generates a character for the password
+    
     #The 'Char_choice' takes list parameter containing ASCII character range used for generating a single character
     #Randomly chooses character from the list parameter
     
