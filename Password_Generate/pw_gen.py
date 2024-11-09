@@ -34,7 +34,7 @@ def copy():
      #Function copies the generated password to the system clipboard
      pyperclip.copy(t1.get('1.0', 'end-1c'))
 
-#Display GUI layout to select options for generating a password
+#Display GUI layout to select options for generating password
 t1 = Text(top,  height = 1, width = 50,font=("Arial",16))   
 t1.place(x=70,y=100)  
 title = Label(top,text="Generate a strong password!",font=("Arial",25),bg="lightyellow",fg="black") 
