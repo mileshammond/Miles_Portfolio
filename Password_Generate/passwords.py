@@ -33,7 +33,7 @@ def generator(size=12,numbers=True,upper=True,lower=True,special=True):
     char_range=""
     gen_pw=""
 
-    #Defining character lists (ASCII numbers represent screen character)
+    #Defining character lists
     numerical=string.digits # 0 to 9
     letters_upper=string.ascii_uppercase # A to Z
     letters_lower=string.ascii_lowercase # a to z
