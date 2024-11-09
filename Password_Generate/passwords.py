@@ -27,7 +27,7 @@ def generator(size=12,numbers=True,upper=True,lower=True,special=True):
 
        Example:
 
-       size=15,duplicate=False,numbers=True,upper=True,lower=False,special=False
+       size=15,numbers=True,upper=True,lower=False,special=False
     '''
 
     char_range=""
