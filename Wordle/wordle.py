@@ -79,13 +79,17 @@ class wordle_tools():
     def finish_message(self):
         #Decide message to display when game finished
         global final_message,attempt
+    
         if guess == wordle:
+            #Guessed correctly
             final_message="\nCORRECT! " +praise[attempt]+"\n"
             attempt=6
         elif attempt == 5:
+            #Ran out of chances to guess
             final_message="\nUnlucky, word was "+ wordle.upper()+"\n"
             attempt=6
         else:
+            #If game hasnt finshed increase counter
             attempt+=1
 
     def validation(self):
@@ -133,47 +137,42 @@ while(wordle_turn):
 
     ########################### Main part of program to play Wordle game ###########################
     
-    while(True):
-        #If wordle game has finished display results and jump to section for playing another game..
-        if attempt == 6:
-            wordle_game.print_wordle() #Display board of previous Wordle guesses   
-            print(final_message)
-            break
-        #..Otherwise current game not finished, continue playing   
-        else:      
-            while(True):
-                wordle_game.print_wordle() #Display board of previous Wordle guesses
-              
-                #Only display wrong letter guesses if they exist
-                if attempt != 0:
-                    print(f"\nBad letters: {bad_letters.upper()}")
+    while(attempt<=5): #6 chances at the most
+        while(True):
+            wordle_game.print_wordle() #Display board of previous Wordle guesses
+            print(wordle)
+            #Only display wrong letter guesses if they exist
+            if attempt != 0:
+                print(f"\nBad letters: {bad_letters.upper()}")
+        
+            #User enters Wordle guess
+            guess=input(f"\n\nPlease enter guess {attempt+1}:").lower()
             
-                #User enters Wordle guess
-                guess=input(f"\n\nPlease enter guess {attempt+1}:").lower()
-               
-                #Invokes function to check if users guess is a valid word (e.g word in the dictionary, 5 letters etc) 
-                try:
-                    wordle_game.validation()
-                except validation_error as err:
-                    #Custom exception displayed when guess isn't a valid word
-                    print(f"\n{err}")
-                    sleep(1.5)
-                else:
-                    break
+            #Invokes function to check if users guess is a valid word (e.g word in the dictionary, 5 letters etc) 
+            try:
+                wordle_game.validation()
+            except validation_error as err:
+                #Custom exception displayed when guess isn't a valid word
+                print(f"\n{err}")
+                sleep(1.5)
+            else:
+                break
 
-            #Check how the users guess matches the chosen wordle word
-            wordle_game.letter_matching()
+        #Check how the users guess matches the chosen wordle word
+        wordle_game.letter_matching()
 
-            #Gathers all letters from users guesses that were not in the wordle word
-            wordle_game.wrong_letters()
+        #Gathers all letters from users guesses that were not in the wordle word
+        wordle_game.wrong_letters()
 
-            #Decide message to display when game finished
-            wordle_game.finish_message()
+        #Decide message to display when game finished. Keep track of how many chances to guess are remaining in the game
+        wordle_game.finish_message()
+
+    #Wordle game has finished. Display results
+    wordle_game.print_wordle()  
+    print(final_message)
 
     #Put previous Wordle word into blacklist so it wont be used again
     used_words.append(wordle)
-
-    #Play again section
 
     #If all words in the dictionary have been played then end game...
     if wordle_dict_len == len(used_words):
