@@ -66,7 +66,6 @@ class wordle_tools():
                         else:
                             #Letter not in wordle word
                             wordle_matrix[attempt][a]="."+guess[a].lower()+" "               
-                print()
 
     def wrong_letters(self):
         #Updates a string containing all letters from users guesses that were not in the wordle word
@@ -94,7 +93,7 @@ class wordle_tools():
         if guess.isnumeric():
             raise validation_error("No numbers allowed")
         elif(len(guess)< 5):
-            raise validation_error("To short")
+            raise validation_error("Not enough letters")
         elif guess not in wordle_dictionary:
             raise validation_error("Not in wordle dictionary")
             
@@ -119,34 +118,30 @@ while(wordle_turn):
     wordle_matrix=[['- ' for x in range(5)] for y in range(6)] #Wordle guess board
     attempt=0
     final_message=""
-    bad_letters=""
-    loop=True
-    word_check=True
+    bad_letters=""   
     wordle=wordle_dictionary[randint(0,len(wordle_dictionary)-1)].strip() #Choosing wordle word from dictionary
     
     #Checking randomly chosen wordle word hasnt been used before. Chooses new word if it has been used before
-    while(word_check):
+    while(True):
         if wordle in used_words:
             wordle=wordle_dictionary[randint(0,len(wordle_dictionary)-1)].strip()
         else:
-            word_check=False    
+           break  
 
     #Generate object for the class that contains the wordle tool set
     wordle_game=wordle_tools()
 
     ########################### Main part of program to play Wordle game ###########################
     
-    while(loop):
+    while(True):
         #If wordle game has finished display results and jump to section for playing another game..
         if attempt == 6:
             wordle_game.print_wordle() #Display board of previous Wordle guesses   
             print(final_message)
-            loop=False
+            break
         #..Otherwise current game not finished, continue playing   
         else:      
-            guess_input=True    
-
-            while(guess_input):
+            while(True):
                 wordle_game.print_wordle() #Display board of previous Wordle guesses
               
                 #Only display wrong letter guesses if they exist
@@ -163,9 +158,8 @@ while(wordle_turn):
                     #Custom exception displayed when guess isn't a valid word
                     print(f"\n{err}")
                     sleep(1.5)
-                    guess_input=True
                 else:
-                    guess_input=False
+                    break
 
             #Check how the users guess matches the chosen wordle word
             wordle_game.letter_matching()
@@ -181,20 +175,18 @@ while(wordle_turn):
 
     #Play again section
 
-    #If there are words in the wordle dictionary yet to be guseed then user is given option to play again
+    #If all words in the dictionary have been played then end game...
     if wordle_dict_len == len(used_words):
         print("You have exhausted the wordle dictionary!\n")
         wordle_turn=False
     else:
-        #Play the game again?
-        correct_input=True       
+        #...Otherwise offer the chance to play the game again?       
+        while(True):
+            turn=input("\nWould you like another go? (Y/N)").upper()
 
-        while(correct_input):
-            turn=input("Would you like another go? (Y/N)").upper()
-        
             if turn == 'Y':
-                correct_input = False
+                break
             elif turn == 'N':
-                correct_input = False
                 wordle_turn = False
                 print()
+                break
