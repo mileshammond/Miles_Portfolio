@@ -31,7 +31,7 @@ def begin():
      t1.tag_add("tag_name", "1.0", "end")
 
 def copy():
-     #Function copies the generated password to the system clipboard
+     #Function copies the generated password to system clipboard
      pyperclip.copy(t1.get('1.0', 'end-1c'))
 
 #Display GUI layout to select options for generating password
