@@ -46,34 +46,29 @@ def generator(size=12,numbers=True,upper=True,lower=True,special=True):
         return "Please select at least one character option!"
     else:
         #Based on users options, compile a string of characters that will be used to generate a password 
-        if numbers: 
-            char_range+="".join(numerical)           
-        if upper:
-            char_range+="".join(letters_upper)  
-        if lower:
-            char_range+="".join(letters_lower) 
-        if special:
-            char_range+="".join(special_char) 
+        if numbers: char_range+="".join(numerical)           
+        if upper: char_range+="".join(letters_upper)  
+        if lower: char_range+="".join(letters_lower) 
+        if special: char_range+="".join(special_char) 
 
         #Repeat the loop until the password includes at least one character from each of the users character options
         while(True):
             #Gnerates a password
             gen_pw="".join(choice(char_range) for a in range(size))
-            
+           
             #If user chose numbers and password doesn't include a number then stay in loop and generate password again
-            if numbers and any(char.isnumeric() for char in gen_pw) == False:
-                pass
+            if numbers and any(char.isnumeric() for char in gen_pw) == False: pass
+
             #If user chose uppercase letters and password doesn't include a uppercase letter then stay in loop and generate password again
-            elif upper and any(char.isupper() for char in gen_pw) == False:
-                pass
+            elif upper and any(char.isupper() for char in gen_pw) == False: pass
+
             #If user chose lowercase letters and password doesn't include a lowercase letter then stay in loop and generate password again
-            elif lower and any(char.islower() for char in gen_pw) == False:
-                pass
+            elif lower and any(char.islower() for char in gen_pw) == False: pass
+
             #If user chose special characters and password doesn't include a special character then stay in loop and generate password again
-            elif special and any(char in "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~" for char in gen_pw) == False:
-                pass
-            else:
-                #If password has at least one character from each of the users character options then break loop and return to GUI
-                break
+            elif special and any(char in "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~" for char in gen_pw) == False: pass
+            
+            #If password has at least one character from each of the users character options then break loop and return to GUI
+            else: break
    
         return gen_pw 
