@@ -48,7 +48,7 @@ else:
    # Number of IP addresses in list
    no_of_IP_addresses=len(IP_addresses)
 
-   # Check each switch in the global estate to find the device (MAC address)
+   # Check each switch in the global estate
    for IP in range(no_of_IP_addresses): 
        # Data stucture for connecting to CISCO switch stack 
        device_dict = {
