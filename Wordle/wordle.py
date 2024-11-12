@@ -82,11 +82,11 @@ class wordle_tools():
     
         if guess == wordle:
             #Guessed correctly
-            final_message="\nCORRECT! " +praise[attempt]+"\n"
+            final_message= f"\nCORRECT! {praise[attempt]}\n"
             attempt=6
         elif attempt == 5:
             #Ran out of chances to guess
-            final_message="\nUnlucky, word was "+ wordle.upper()+"\n"
+            final_message= f"\nUnlucky, word was {wordle.upper()}\n"
             attempt=6
         else:
             #If game hasnt finshed increase counter
@@ -140,7 +140,7 @@ while(wordle_turn):
     while(attempt<=5): #6 chances at the most
         while(True):
             wordle_game.print_wordle() #Display board of previous Wordle guesses
-            print(wordle)
+            
             #Only display wrong letter guesses if they exist
             if attempt != 0:
                 print(f"\nBad letters: {bad_letters.upper()}")
