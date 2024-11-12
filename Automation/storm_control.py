@@ -90,14 +90,14 @@ else:
                    current_no_of_batch_commands=len(batch_commands)
 
                    if(current_no_of_batch_commands==original_no_of_batch_commands):     
-                       batch_commands.insert(1, 'interface '+port)
+                       batch_commands.insert(1, f'interface {port}')
                    else:  
-                       batch_commands[1]='interface '+port
+                       batch_commands[1]=f'interface {port}'
 
                    # Update port configuration of current interface
                    CISCO_switch.send_config_set(batch_commands,read_timeout=120)
                    print(f"Adding storm control to port {port} in VLAN {vlan}\n")
-                   adjusted_config=CISCO_switch.send_command(f"show run interface "+port+" | section interface",read_timeout=120)
+                   adjusted_config=CISCO_switch.send_command(f"show run interface {port} | section interface",read_timeout=120)
                    results.write(f"\n\n {IP_addresses[IP]} ({filter_hostname[:-1]})")
                    results.write(f"\n\n {adjusted_config}")
 
