@@ -6,7 +6,7 @@
 # Automatically creates a text file about the device configuration updates called "Storm Control Updates- <today date and time>.txt"
 # Automatically creates a text file of the original AP port configuration called "Port Config Backup- <today date and time>.txt"
 
-# Created by Miles Hammond (EMEA Senior Network Engineer)
+# Created by Miles Hammond
 
 from netmiko import *
 import getpass
@@ -16,7 +16,7 @@ import csv
 # Create progress file for updating devices
 date_stamp = datetime.now()
 file_name=date_stamp.strftime("%A %d %B %Y %H.%M %p")+".txt"
-results=open("C:\\Users\miles\OneDrive\Desktop\Python\Progs\Miles\Automation\Storm-Updates-"+file_name, "a")
+results=open(f"C:\\Users\miles\OneDrive\Desktop\Python\Progs\Miles\Automation\Storm-Updates-{file_name}", "a")
 
 # Create list of commands for updating configuration
 commands_f = open("DATA_FILES/commands.txt", "r")
@@ -48,7 +48,7 @@ else:
    # Number of IP addresses in list
    no_of_IP_addresses=len(IP_addresses)
 
-   # Check each switch in the global estate to find the device (MAC address)
+   # Check each switch in the global estate
    for IP in range(no_of_IP_addresses): 
        # Data stucture for connecting to CISCO switch stack 
        device_dict = {
@@ -68,7 +68,7 @@ else:
 
            # Create file (if it doesnt already exist) for backing up switch port config   
            file_name=date_stamp.strftime("%A %d %B %Y %H.%M %p")+".txt"
-           backup=open("C:\\Users\miles\OneDrive\Desktop\Python\Progs\Miles\Automation\Port_Config_Backup-"+file_name, "a")
+           backup=open(f"C:\\Users\miles\OneDrive\Desktop\Python\Progs\Miles\Automation\Port_Config_Backup-{file_name}", "a")
 
            backup_port_config=CISCO_switch.send_command("show config",read_timeout=120)
            backup.write(f"\n\n*** Switch {IP_addresses[IP]} ({filter_hostname[:-1]}) ***")
@@ -97,7 +97,7 @@ else:
                    # Update port configuration of current interface
                    CISCO_switch.send_config_set(batch_commands,read_timeout=120)
                    print(f"Adding storm control to port {port} in VLAN {vlan}\n")
-                   adjusted_config=CISCO_switch.send_command("show run interface "+port+" | section interface",read_timeout=120)
+                   adjusted_config=CISCO_switch.send_command(f"show run interface "+port+" | section interface",read_timeout=120)
                    results.write(f"\n\n {IP_addresses[IP]} ({filter_hostname[:-1]})")
                    results.write(f"\n\n {adjusted_config}")
 
