@@ -3,7 +3,7 @@
 # 1. IP.csv = List of switch stack IPs
 # 2. commands.txt = List of commands for updating to a switch
 
-# Automatically creates a text file about the device configuration updates called "Storm Control Updates- <today date and time>.txt"
+# Automatically creates a text file with the devices configuration updates called "Storm Control Updates- <today date and time>.txt"
 # Automatically creates a text file of the original AP port configuration called "Port Config Backup- <today date and time>.txt"
 
 # Created by Miles Hammond
@@ -81,8 +81,8 @@ else:
            Interface_rows=len(output)
 
            for row in range(0,Interface_rows):
-               port = (str(output[row]['port'])).strip()
-               vlan = (str(output[row]['vlan_id'])).strip()
+               port = [row]['port']
+               vlan = [row]['vlan_id']
 
                # VLANS: 160 is Wired. 170 is Corp sensor. 175 is AV. 190 is Security
                if(vlan == "160" or vlan == "170" or vlan == "175" or vlan == "190"):
