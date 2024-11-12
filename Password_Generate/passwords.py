@@ -6,6 +6,7 @@
 from random import *
 from os import system
 import string
+from re import search
 
 def generator(size=12,numbers=True,upper=True,lower=True,special=True):  
     '''       Password generator. 
@@ -55,18 +56,18 @@ def generator(size=12,numbers=True,upper=True,lower=True,special=True):
         while(True):
             #Gnerates a password
             gen_pw="".join(choice(char_range) for a in range(size))
-           
+            
             #If user chose numbers and password doesn't include a number then stay in loop and generate password again
-            if numbers and any(char.isnumeric() for char in gen_pw) == False: pass
+            if numbers and search("[0-9]", gen_pw) == None: pass
 
             #If user chose uppercase letters and password doesn't include a uppercase letter then stay in loop and generate password again
-            elif upper and any(char.isupper() for char in gen_pw) == False: pass
+            elif upper and search("[A-Z]", gen_pw) == None: pass
 
             #If user chose lowercase letters and password doesn't include a lowercase letter then stay in loop and generate password again
-            elif lower and any(char.islower() for char in gen_pw) == False: pass
+            elif lower and search("[a-z]", gen_pw) == None: pass
 
             #If user chose special characters and password doesn't include a special character then stay in loop and generate password again
-            elif special and any(char in "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~" for char in gen_pw) == False: pass
+            elif special and search("[^0-9A-Za-z]", gen_pw) == None: pass
             
             #If password has at least one character from each of the users character options then break loop and return to GUI
             else: break
