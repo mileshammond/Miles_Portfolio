@@ -46,7 +46,7 @@ B.place(x=230,y=250)
 copy = Button(top, width = 15, text ="Copy to clipboard", command = copy)
 copy.place(x=400,y=250)
 
-#Checkboxes
+#Checkboxes.
 numerical = Checkbutton(top, text = "Numbers", variable = number_checkbox, font=("Arial",12),bg="lightyellow",fg="black",height = 2, width = 10)  
 numerical.place(x=200,y=150)
 lowerletters = Checkbutton(top, text = "Lowercase", variable = lower_checkbox, font=("Arial",12),bg="lightyellow",fg="black",height = 2, width = 10)  
