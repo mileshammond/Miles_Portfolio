@@ -1,4 +1,4 @@
-# Update switch estate with storm control commands
+# Update switch estate with storm control commands.
 
 # Please create files:  
 # 1. IP.csv = List of switch stack IPs
