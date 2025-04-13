@@ -7,7 +7,7 @@
 # Automatically creates a text file with the devices configuration updates called "Storm Control Updates- <today date and time>.txt"
 # Automatically creates a text file of the original AP port configuration called "Port Config Backup- <today date and time>.txt"
 
-# Created by Miles Hammond
+# Created by Miles Hammond.
 
 from netmiko import *
 import getpass
