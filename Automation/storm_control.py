@@ -1,7 +1,7 @@
 # Update switch estate with storm control commands.
 
 # Please create files:  
-# 1. IP.csv = List of switch stack IPs.
+# 1. IP.csv = List of switch stack IPs
 # 2. commands.txt = List of commands for updating to a switch
 
 # Automatically creates a text file with the devices configuration updates called "Storm Control Updates- <today date and time>.txt"
