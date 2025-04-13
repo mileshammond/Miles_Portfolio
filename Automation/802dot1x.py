@@ -1,4 +1,4 @@
-# By Miles Hammond
+# By Miles Hammond.
 
 from netmiko import ConnectHandler
 from netmiko.exceptions import NetmikoAuthenticationException, NetmikoTimeoutException
