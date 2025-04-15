@@ -1,4 +1,4 @@
-#GUI frontend utilses bespoke module to generate a password
+#GUI frontend utilses bespoke module to generate a password.
 
 #By Miles Hammond
 
